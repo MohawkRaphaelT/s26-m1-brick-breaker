@@ -7,6 +7,8 @@ public class Racket : MonoBehaviour
     // How fast we move horizontally in pixels per second
     public float moveSpeed = 100; // in px
 
+
+    // Racket pixel sizing w/ collider
     public SpriteRenderer racketLeft;
     public SpriteRenderer racketCentre;
     public SpriteRenderer racketRight;
@@ -23,7 +25,10 @@ public class Racket : MonoBehaviour
         capsuleCollider2D.size = new Vector2(width, height);
 
         // Set position of left and right segments
-
+        float leftOffsetX  = racketCentre.bounds.extents.x + racketLeft.bounds.extents.x;
+        float rightOffsetX = racketCentre.bounds.extents.x + racketRight.bounds.extents.x;
+        racketLeft.transform.position  = racketCentre.transform.position + new Vector3(-leftOffsetX, 0, 0);
+        racketRight.transform.position = racketCentre.transform.position + new Vector3(rightOffsetX, 0, 0);
     }
 
     void FixedUpdate()
