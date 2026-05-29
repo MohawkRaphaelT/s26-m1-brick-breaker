@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 238127209}
   m_Layer: 0
   m_Name: Racket
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +358,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ae2c4c5dec26c444da2571bc5a77d464, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -455,6 +455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fcb3955e9cff144bf558c9e719fc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
+  rb2d: {fileID: 275902774}
+  launchSpeed: 100
+  blockManager: {fileID: 1633832567}
 --- !u!1 &302070200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,8 +1383,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5e111eeac86414eb9eeaa9dd3bc13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockManager
-  blockPrefab: {fileID: 0}
-  blockSprites: []
+  blockPrefab: {fileID: 3218122441739137718, guid: 28279fd48a8e17f4d9e6fb31569469d2, type: 3}
+  blockSprites:
+  - {fileID: 21300000, guid: 37158181b8255b744abb50560744f3ed, type: 3}
+  - {fileID: 21300000, guid: bbbb9e6e92ac3654991cd3bb88cbbbe0, type: 3}
+  - {fileID: 21300000, guid: 82c3f83faeee63c4aa1e7bd0151b7a7e, type: 3}
+  - {fileID: 21300000, guid: 910a6148559d0464684bb3acafe26678, type: 3}
+  - {fileID: 21300000, guid: 215b4d0dd0a63f64092b54891a8d59f5, type: 3}
   blockGap: 2
   gridBlocks: '000 222 000
 
@@ -1390,6 +1398,8 @@ MonoBehaviour:
     22 333 22
 
     333'
+  numberOfBlocks: 0
+  numberOfBlocksDestroyed: 0
 --- !u!4 &1633832568
 Transform:
   m_ObjectHideFlags: 0
