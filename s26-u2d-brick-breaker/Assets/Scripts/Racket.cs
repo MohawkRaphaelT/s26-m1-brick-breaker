@@ -31,6 +31,12 @@ public class Racket : MonoBehaviour
         racketRight.transform.position = racketCentre.transform.position + new Vector3(rightOffsetX, 0, 0);
     }
 
+    private void Start()
+    {
+        if (Input.gyro.enabled == false)
+            Input.gyro.enabled = true;
+    }
+
     void FixedUpdate()
     {
         AutoSizeRacket();
@@ -49,6 +55,18 @@ public class Racket : MonoBehaviour
             else
                 moveX += moveSpeed;
         }
+
+        // Move camera with gyro
+        Vector3 cameraRotation = Camera.main.transform.rotation.eulerAngles;
+        cameraRotation.z = -Input.gyro.attitude.eulerAngles.z;
+        // Make -180 to -360 range positive
+        if (cameraRotation.z < -180)
+            cameraRotation.z += 360;
+        // Set camera rotation
+        //Camera.main.transform.rotation = Quaternion.Euler(cameraRotation);
+        // Move with gyro
+        moveX += Mathf.Clamp(cameraRotation.z, -10, +10) / 5 * moveSpeed;
+
 
         rb2d.linearVelocityX = moveX;
     }
