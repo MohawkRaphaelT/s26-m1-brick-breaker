@@ -36,7 +36,20 @@ public class Racket : MonoBehaviour
         AutoSizeRacket();
 
         // Move player horizontally
-        float moveX = Input.GetAxis("Horizontal") * moveSpeed;
+        //float moveX = Input.GetAxis("Horizontal") * moveSpeed;
+
+        float halfScreenX = Screen.currentResolution.width / 2f;
+        float moveX = 0;
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = Input.GetTouch(i);
+
+            if (touch.position.x < halfScreenX)
+                moveX -= moveSpeed;
+            else
+                moveX += moveSpeed;
+        }
+
         rb2d.linearVelocityX = moveX;
     }
 

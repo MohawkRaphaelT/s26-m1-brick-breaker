@@ -43,6 +43,14 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Out Of Bounds") == true)
+        {
+            LaunchBall();
+        }
+    }
+
     void LaunchBall()
     {
         // Move ball back to starting position when we ran the game / scene
